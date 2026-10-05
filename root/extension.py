@@ -1,4 +1,7 @@
 import random
+ties=0
+cpu_wins=0
+player_wins=0
 def get_cpu_choice():
     cpu_choice = random.choice(["rock", "paper", "scissors"])
     return cpu_choice
@@ -30,25 +33,20 @@ def play_round():
     player_choice = get_player_choice()
     winner = check_winner(cpu_choice, player_choice)
     return winner
-player_wins= 0
-cpu_wins= 0
-tie= 0
 while player_wins <3 and cpu_wins <3:
-    winner = play_round()
-    if winner == "PLAYER WON":
-        player_wins = player_wins +1
-        print("You won the round")
-    elif winner == "CPU WON":
-        cpu_wins = cpu_wins +1
-        print("CPU won the round")
-    else:
-        tie = tie +1
-        print("TIE")
-    print("Player Wins:", player_wins)
-    print("CPU Wins:", cpu_wins)
-    print("Ties:", tie)
-    print("~~~~~~~~~~~~")
-if player_wins == 3:
-    print("PLAYER won the game")
-else:
-    print("CPU won the game")
+    while True:
+        winner = play_round()
+        if winner == "PLAYER WON":
+            player_wins = player_wins+ 1
+        elif winner == "CPU WON":
+            cpu_wins = cpu_wins+ 1
+        else:
+            ties = ties+ 1
+        print(f"Your score:{player_wins}")
+        print(f"CPU score: {cpu_wins}")
+        if player_wins == 3 or cpu_wins == 3:
+            break
+if player_wins ==3:
+    print("player won the tournament")
+if cpu_wins ==3:
+    print("cpu won the tournament")
